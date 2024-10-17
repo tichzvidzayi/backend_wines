@@ -36,9 +36,11 @@ const start = async () => {
   //const port = process.env.PORT || 3030; can use .env file
   try {
     await AppDataSource.initialize();
-    await fastify.listen({ port: 3032 });
+  //  await fastify.listen({ port: 3032 });
+    await fastify.listen({ port: 80, host: '0.0.0.0' });
+
     
-    console.log(" Server is running on http://localhost:3032");
+    console.log(" Server is running on http://localhost:80");
   } catch (error) {
     fastify.log.error(error);
     process.exit(1);
