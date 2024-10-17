@@ -9,8 +9,8 @@ import fs from 'fs';
 const fastify = Fastify({
   logger: true,
   https: {
-    key: fs.readFileSync('server.key'),
-    cert: fs.readFileSync('server.cert'),
+    key: fs.readFileSync('/etc/letsencrypt/live/yourdomain.com/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/yourdomain.com/fullchain.pem'),
   },
 });
 
@@ -41,8 +41,8 @@ fastify.get('/wines', async (request, reply) => {
 const start = async () => {
   try {
     await AppDataSource.initialize();
-    await fastify.listen({ port: 3030, host: '0.0.0.0' });
-    console.log("Server is running on https://localhost:3030");
+    await fastify.listen({ port: 443, host: '0.0.0.0' });
+    console.log("Server is running on https://yourdomain.com");
   } catch (error) {
     fastify.log.error(error);
     process.exit(1);
