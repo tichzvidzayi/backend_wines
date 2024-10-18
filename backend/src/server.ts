@@ -42,7 +42,7 @@ const start = async () => {
   try {
     await AppDataSource.initialize();
     await fastify.listen({ port: 443, host: '0.0.0.0' });
-    console.log("Server is running on");
+    console.log("Server is running on : ");
   } catch (error) {
     fastify.log.error(error);
     process.exit(1);
